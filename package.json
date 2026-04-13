@@ -1,0 +1,20 @@
+{
+  "name": "se-playground",
+  "version": "1.0.0",
+  "description": "SE Playground - A Spotify-inspired portfolio website by Halil Aybar",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["portfolio", "spotify", "api"],
+  "author": "Halil Aybar",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "dotenv": "^17.4.2",
+    "express": "^5.2.1",
+    "node-fetch": "^2.7.0"
+  }
+}

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SE Playground - Halil Aybar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Sticky Navigation -->
+    <nav class="nav">
+        <div class="nav-container">
+            <div class="nav-brand">SE Playground</div>
+            <ul class="nav-links">
+                <li><a href="#hero">Home</a></li>
+                <li><a href="#explorer">API Explorer</a></li>
+                <li><a href="#simulator">SE Simulator</a></li>
+                <li><a href="#dashboard">Dashboard</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="container">
+            <h1 class="hero-title">Halil Aybar</h1>
+            <p class="hero-tagline">I bridge code and customer reality.</p>
+            <div class="hero-cta">
+                <a href="#explorer" class="btn btn-primary">Try the Explorer</a>
+                <a href="#" class="btn btn-secondary">View Resume</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Live API Explorer -->
+    <section id="explorer" class="section">
+        <div class="container">
+            <h2 class="section-title">Live API Explorer</h2>
+            <p class="section-subtitle">Search Spotify's catalog in real-time</p>
+            
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    id="search-input" 
+                    class="search-input" 
+                    placeholder="Search for tracks or artists..."
+                    autocomplete="off"
+                >
+                <button id="search-btn" class="btn btn-primary">Search</button>
+            </div>
+
+            <div class="explorer-content">
+                <div class="results-panel">
+                    <h3 class="panel-title">Results</h3>
+                    <div id="results-container" class="results-container">
+                        <p class="empty-state">Enter a search query to see results</p>
+                    </div>
+                </div>
+
+                <div class="json-panel">
+                    <div class="panel-header">
+                        <h3 class="panel-title">Raw JSON</h3>
+                        <button id="toggle-json" class="btn btn-small">Show JSON</button>
+                    </div>
+                    <pre id="json-container" class="json-container hidden"></pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SE Scenario Simulator -->
+    <section id="simulator" class="section section-dark">
+        <div class="container">
+            <h2 class="section-title">SE Scenario Simulator</h2>
+            <p class="section-subtitle">Debug a live integration issue with Melodia Inc.</p>
+            
+            <div class="chat-container">
+                <div id="chat-messages" class="chat-messages">
+                    <div class="message assistant-message">
+                        <div class="message-content">
+                            👋 Hi! I'm the engineering team at Melodia Inc. We've been experiencing issues with our Spotify webhook integration since last week. Can you help us debug this?
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="chat-input-container">
+                    <input 
+                        type="text" 
+                        id="chat-input" 
+                        class="chat-input" 
+                        placeholder="Type your debugging question..."
+                        autocomplete="off"
+                    >
+                    <button id="send-btn" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Health Dashboard -->
+    <section id="dashboard" class="section">
+        <div class="container">
+            <h2 class="section-title">Integration Health Dashboard</h2>
+            <p class="section-subtitle">Monitor your Spotify integration in real-time</p>
+            
+            <div class="kpi-grid">
+                <div class="kpi-card">
+                    <div class="kpi-label">Uptime</div>
+                    <div class="kpi-value" id="uptime-value">99.8%</div>
+                    <div class="kpi-status status-good">Healthy</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Avg Latency</div>
+                    <div class="kpi-value" id="latency-value">142ms</div>
+                    <div class="kpi-status status-good">Optimal</div>
+                </div>
+                <div class="kpi-card">
+                    <div class="kpi-label">Error Rate</div>
+                    <div class="kpi-value" id="error-rate-value">0.3%</div>
+                    <div class="kpi-status status-good" id="error-status">Healthy</div>
+                </div>
+            </div>
+
+            <div class="chart-container">
+                <h3 class="panel-title">Webhook Events (Last 7 Days)</h3>
+                <canvas id="webhook-chart"></canvas>
+            </div>
+
+            <div class="event-log">
+                <div class="log-header">
+                    <h3 class="panel-title">Recent Events</h3>
+                    <button id="trigger-incident-btn" class="btn btn-danger">Trigger Incident</button>
+                </div>
+                <div class="table-container">
+                    <table class="event-table">
+                        <thead>
+                            <tr>
+                                <th>Timestamp</th>
+                                <th>Event Type</th>
+                                <th>Status</th>
+                                <th>Response Time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="event-log-body">
+                            <tr>
+                                <td>2026-04-12 14:23:15</td>
+                                <td>playlist.updated</td>
+                                <td><span class="status-badge status-success">200</span></td>
+                                <td>138ms</td>
+                            </tr>
+                            <tr>
+                                <td>2026-04-12 14:18:42</td>
+                                <td>track.saved</td>
+                                <td><span class="status-badge status-success">200</span></td>
+                                <td>145ms</td>
+                            </tr>
+                            <tr>
+                                <td>2026-04-12 14:12:03</td>
+                                <td>user.followed</td>
+                                <td><span class="status-badge status-success">200</span></td>
+                                <td>152ms</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 Halil Aybar. SE Playground.</p>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>
