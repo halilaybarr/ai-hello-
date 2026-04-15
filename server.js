@@ -9,11 +9,13 @@ const PORT = process.env.PORT || 3000;
 app.use(express.json());
 app.use(express.static('public'));
 
-// Spotify token cache
+app.get('/resume', (req, res) => {
+  res.sendFile(path.join(__dirname, 'public', 'resume.html'));
+});
+
 let spotifyToken = null;
 let tokenExpiry = 0;
 
-// Get Spotify access token using Client Credentials flow
 async function getSpotifyToken() {
   if (spotifyToken && Date.now() < tokenExpiry) {
     return spotifyToken;
@@ -44,12 +46,12 @@ async function getSpotifyToken() {
   }
 
   spotifyToken = data.access_token;
-  tokenExpiry = Date.now() + (data.expires_in * 1000) - 60000; // Refresh 1 min early
+  tokenExpiry = Date.now() + (data.expires_in * 1000) - 60000;
   
   return spotifyToken;
 }
 
-// Endpoint to get Spotify access token
+
 app.get('/api/spotify-token', async (req, res) => {
   try {
     const token = await getSpotifyToken();
@@ -60,37 +62,40 @@ app.get('/api/spotify-token', async (req, res) => {
   }
 });
 
-// Endpoint for OpenAI chat completions
+const OpenAI = require('openai');
+const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
+
+let chatHistory = [];
+
 app.post('/api/chat', async (req, res) => {
   try {
-    const { messages } = req.body;
-    const apiKey = process.env.OPENAI_API_KEY;
+    const { message } = req.body;
 
-    if (!apiKey) {
+    if (!process.env.OPENAI_API_KEY) {
       return res.status(500).json({ error: 'OpenAI API key not configured' });
     }
 
-    const response = await fetch('https://api.openai.com/v1/chat/completions', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${apiKey}`
-      },
-      body: JSON.stringify({
-        model: 'gpt-4o-mini',
-        messages: messages,
-        temperature: 0.7,
-        max_tokens: 500
-      })
+    const systemPrompt = {
+      role: 'system',
+      content: `You are a fictional enterprise partner called Melodia Inc.
+Your Spotify webhook integration is broken and you need help from a Solutions Engineer.
+Respond in character — frustrated but cooperative. When the SE asks the right questions,
+reveal that the root cause is an expired OAuth token from the Spotify OAuth migration
+in November 2025. Give clues gradually, don't reveal everything at once.`
+    };
+
+    chatHistory.push({ role: 'user', content: message });
+
+    const response = await openai.chat.completions.create({
+      model: 'gpt-4o-mini',
+      messages: [systemPrompt, ...chatHistory],
     });
 
-    const data = await response.json();
+    const reply = response.choices[0].message.content;
 
-    if (!response.ok) {
-      throw new Error(data.error?.message || 'OpenAI API request failed');
-    }
+    chatHistory.push({ role: 'assistant', content: reply });
 
-    res.json({ message: data.choices[0].message.content });
+    res.json({ message: reply });
   } catch (error) {
     console.error('Error calling OpenAI:', error);
     res.status(500).json({ error: error.message });

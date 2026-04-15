@@ -1,7 +1,3 @@
-// ==========================================
-// API Explorer - Spotify Search
-// ==========================================
-
 const searchInput = document.getElementById('search-input');
 const searchBtn = document.getElementById('search-btn');
 const resultsContainer = document.getElementById('results-container');
@@ -35,7 +31,6 @@ async function performSearch() {
     resultsContainer.innerHTML = '<p class="empty-state">Loading...</p>';
 
     try {
-        // Get access token from our proxy server
         const tokenResponse = await fetch('/api/spotify-token');
         const tokenData = await tokenResponse.json();
 
@@ -43,7 +38,6 @@ async function performSearch() {
             throw new Error(tokenData.error || 'Failed to get Spotify token');
         }
 
-        // Search Spotify API
         const searchUrl = `https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track,artist&limit=10`;
         const searchResponse = await fetch(searchUrl, {
             headers: {
@@ -81,7 +75,6 @@ function displayResults(data) {
 
     let html = '';
 
-    // Display tracks
     tracks.forEach(track => {
         const imageUrl = track.album.images[0]?.url || '';
         const artistNames = track.artists.map(a => a.name).join(', ');
@@ -98,7 +91,6 @@ function displayResults(data) {
         `;
     });
 
-    // Display artists
     artists.forEach(artist => {
         const imageUrl = artist.images[0]?.url || '';
         
@@ -121,34 +113,9 @@ function displayJSON(data) {
     jsonContainer.textContent = JSON.stringify(data, null, 2);
 }
 
-// ==========================================
-// SE Scenario Simulator - AI Chat
-// ==========================================
-
 const chatMessages = document.getElementById('chat-messages');
 const chatInput = document.getElementById('chat-input');
 const sendBtn = document.getElementById('send-btn');
-
-const SYSTEM_PROMPT = `You are a fictional enterprise partner called Melodia Inc. Your Spotify webhook integration is broken. Respond in character as an engineering team member who is frustrated and needs help debugging.
-
-CRITICAL CONTEXT: The root cause is an expired OAuth token from the November 2025 Spotify OAuth migration. Your webhooks started failing because your refresh token expired and you haven't updated to the new OAuth flow.
-
-BEHAVIOR RULES:
-- Stay in character as Melodia Inc. engineering team
-- Initially you only know "webhooks stopped working last week"
-- If asked about error messages, mention "401 Unauthorized" responses
-- If asked about recent changes, mention "we haven't changed our code"
-- If asked about Spotify updates or OAuth, reveal the Nov 2025 migration issue
-- When the user identifies the OAuth token issue, confirm that's the root cause
-- Be helpful but realistic - show some technical frustration
-- Keep responses concise (2-3 sentences max)`;
-
-let chatHistory = [
-    {
-        role: 'system',
-        content: SYSTEM_PROMPT
-    }
-];
 
 sendBtn.addEventListener('click', sendMessage);
 chatInput.addEventListener('keypress', (e) => {
@@ -160,26 +127,18 @@ async function sendMessage() {
     
     if (!message) return;
 
-    // Add user message to chat
     addMessageToChat('user', message);
     chatInput.value = '';
     sendBtn.disabled = true;
 
-    // Add to history
-    chatHistory.push({
-        role: 'user',
-        content: message
-    });
-
     try {
-        // Call OpenAI via our proxy
         const response = await fetch('/api/chat', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                messages: chatHistory
+                message: message
             })
         });
 
@@ -189,14 +148,8 @@ async function sendMessage() {
             throw new Error(data.error || 'Chat request failed');
         }
 
-        // Add assistant response
         const assistantMessage = data.message;
         addMessageToChat('assistant', assistantMessage);
-
-        chatHistory.push({
-            role: 'assistant',
-            content: assistantMessage
-        });
 
     } catch (error) {
         console.error('Chat error:', error);
@@ -217,13 +170,8 @@ function addMessageToChat(role, content) {
     messageDiv.appendChild(contentDiv);
     chatMessages.appendChild(messageDiv);
     
-    // Scroll to bottom
     chatMessages.scrollTop = chatMessages.scrollHeight;
 }
-
-// ==========================================
-// Integration Health Dashboard
-// ==========================================
 
 const uptimeValue = document.getElementById('uptime-value');
 const latencyValue = document.getElementById('latency-value');
@@ -234,13 +182,11 @@ const eventLogBody = document.getElementById('event-log-body');
 
 let incidentTriggered = false;
 
-// Mock data for the chart
 const mockWebhookData = {
     labels: ['Apr 6', 'Apr 7', 'Apr 8', 'Apr 9', 'Apr 10', 'Apr 11', 'Apr 12'],
     data: [245, 289, 312, 278, 295, 321, 298]
 };
 
-// Initialize Chart.js
 const ctx = document.getElementById('webhook-chart').getContext('2d');
 const webhookChart = new Chart(ctx, {
     type: 'line',
@@ -290,10 +236,8 @@ const webhookChart = new Chart(ctx, {
     }
 });
 
-// Trigger incident functionality
 triggerIncidentBtn.addEventListener('click', () => {
     if (incidentTriggered) {
-        // Reset to normal
         errorRateValue.textContent = '0.3%';
         errorStatus.textContent = 'Healthy';
         errorStatus.classList.remove('status-bad');
@@ -302,13 +246,11 @@ triggerIncidentBtn.addEventListener('click', () => {
         triggerIncidentBtn.classList.remove('btn-secondary');
         triggerIncidentBtn.classList.add('btn-danger');
         
-        // Remove error row
         const errorRow = document.querySelector('.error-row');
         if (errorRow) errorRow.remove();
         
         incidentTriggered = false;
     } else {
-        // Trigger incident
         errorRateValue.textContent = '8.7%';
         errorStatus.textContent = 'Critical';
         errorStatus.classList.remove('status-good');
@@ -317,7 +259,6 @@ triggerIncidentBtn.addEventListener('click', () => {
         triggerIncidentBtn.classList.remove('btn-danger');
         triggerIncidentBtn.classList.add('btn-secondary');
         
-        // Add error row to table
         const errorRow = document.createElement('tr');
         errorRow.className = 'error-row';
         errorRow.innerHTML = `
@@ -332,7 +273,6 @@ triggerIncidentBtn.addEventListener('click', () => {
     }
 });
 
-// Add some animation on load
 window.addEventListener('load', () => {
     document.body.style.opacity = '0';
     document.body.style.transition = 'opacity 0.3s';

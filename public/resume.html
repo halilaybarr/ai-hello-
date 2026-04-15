@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume — Halil Aybar</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .resume-page {
+            max-width: 860px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+
+        .resume-header {
+            margin-bottom: 48px;
+            padding-bottom: 32px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .resume-name {
+            font-size: 48px;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--spotify-green) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 8px;
+        }
+
+        .resume-title {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 20px;
+        }
+
+        .resume-contacts {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+
+        .resume-contacts a {
+            color: var(--spotify-green);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .resume-contacts a:hover {
+            text-decoration: underline;
+        }
+
+        .resume-section {
+            margin-bottom: 48px;
+        }
+
+        .resume-section-title {
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--spotify-green);
+            margin-bottom: 24px;
+        }
+
+        .resume-entry {
+            margin-bottom: 28px;
+        }
+
+        .resume-entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 4px;
+        }
+
+        .resume-entry-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+
+        .resume-entry-date {
+            font-size: 13px;
+            color: var(--text-secondary);
+            white-space: nowrap;
+        }
+
+        .resume-entry-company {
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .resume-entry ul {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .resume-entry ul li {
+            font-size: 14px;
+            color: #d4d4d4;
+            padding-left: 16px;
+            position: relative;
+            line-height: 1.6;
+        }
+
+        .resume-entry ul li::before {
+            content: '—';
+            position: absolute;
+            left: 0;
+            color: var(--spotify-green);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 12px;
+        }
+
+        .skill-group-label {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 6px;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .skill-tag {
+            background-color: var(--bg-card);
+            color: var(--text-primary);
+            font-size: 13px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .download-btn {
+            margin-top: 48px;
+            padding-top: 32px;
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        @media (max-width: 600px) {
+            .resume-name { font-size: 36px; }
+            .resume-entry-header { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="nav-container">
+            <a href="/" class="nav-brand">SE Playground</a>
+            <ul class="nav-links">
+                <li><a href="/#hero">Home</a></li>
+                <li><a href="/#explorer">API Explorer</a></li>
+                <li><a href="/#simulator">SE Simulator</a></li>
+                <li><a href="/#dashboard">Dashboard</a></li>
+                <li><a href="/resume" style="color: var(--spotify-green);">Resume</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="resume-page">
+
+        <div class="resume-header">
+            <div class="resume-name">Halil Aybar</div>
+            <div class="resume-title">Solutions Engineer · Full-Stack Developer</div>
+            <div class="resume-contacts">
+                <a href="mailto:halilaybar0@gmail.com">halilaybar0@gmail.com</a>
+
+                <a href="https://linkedin.com/in/halilaybarr" target="_blank">LinkedIn</a>
+                <a href="https://github.com/halilaybarr" target="_blank">GitHub</a>
+                <a href="/">SE Playground</a>
+                <span style="color: var(--text-secondary); font-size: 13px;">Seattle, WA · Open to Relocation</span>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <div class="resume-section-title">Experience</div>
+
+            <div class="resume-entry">
+                <div class="resume-entry-header">
+                    <div class="resume-entry-title">Freelance Solutions Consultant & Full-Stack Developer</div>
+                    <div class="resume-entry-date">Jan 2023 — Present</div>
+                </div>
+                <div class="resume-entry-company">Independent · Remote</div>
+                <ul>
+                    <li>Partnered with clients to design and implement full-stack solutions, acting as the technical liaison between business requirements and engineering execution</li>
+                    <li>Provided Tier 1/2 support for React and Node.js projects — triaging issues, diagnosing root causes, and resolving integration and deployment failures</li>
+                    <li>Integrated RESTful APIs and implemented OAuth 2.0 / JWT authentication flows across multiple client projects</li>
+                    <li>Built onboarding guides and technical documentation that reduced client support inquiries and improved product adoption</li>
+                    <li>Delivered solution walkthroughs to non-technical stakeholders — translating architecture decisions into plain language</li>
+                </ul>
+            </div>
+
+            <div class="resume-entry">
+                <div class="resume-entry-header">
+                    <div class="resume-entry-title">Customer Solutions & Operations Manager</div>
+                    <div class="resume-entry-date">May 2019 — Present</div>
+                </div>
+                <div class="resume-entry-company">Starbucks · Seattle, WA · Promoted through 4 roles</div>
+                <ul>
+                    <li>Led a 15+ person team generating $38K+ in weekly revenue while maintaining top-quartile customer satisfaction district-wide</li>
+                    <li>Partnered with corporate IT to test, deploy, and train staff on new POS and operational systems — translating technical features into user-focused workflows</li>
+                    <li>Reduced onboarding time by 30% through structured training programs, peer mentorship systems, and custom documentation</li>
+                    <li>Improved customer connection scores by 20+ points through discovery-driven coaching and service journey mapping</li>
+                    <li>Recruited and mentored 25+ team members, reducing turnover 25% by aligning growth paths with business needs</li>
+                    <li>Served as communication bridge between frontline operations and corporate — surfacing technical issues, product feedback, and customer pain points</li>
+                    <li>Analyzed sales and inventory data (Unify / PowerBI) to forecast labor needs and drive operational decisions</li>
+                    <li>Awarded Partner of the Quarter (2020) for performance, technical acumen, and team leadership</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <div class="resume-section-title">Projects</div>
+
+            <div class="resume-entry">
+                <div class="resume-entry-header">
+                    <div class="resume-entry-title">SE Playground</div>
+                    <div class="resume-entry-date"><a href="/" style="color: var(--spotify-green); text-decoration: none;">Live →</a></div>
+                </div>
+                <div class="resume-entry-company">Vanilla JS · Node.js · Express · Spotify API · OpenAI GPT-4o-mini · Chart.js</div>
+                <ul>
+                    <li>Built a portfolio site wired to real APIs — live Spotify search with JSON inspector, AI-powered customer debugging simulator, and a mock integration health dashboard</li>
+                    <li>Express proxy server handles OAuth 2.0 Client Credentials flow so API keys never touch the frontend</li>
+                    <li>AI chat interface roleplays a broken webhook scenario — models real SE discovery and root cause diagnosis workflows</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <div class="resume-section-title">Skills</div>
+            <div class="skills-grid">
+                <div>
+                    <div class="skill-group-label">Languages</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">JavaScript (ES6+)</span>
+                        <span class="skill-tag">SQL</span>
+                        <span class="skill-tag">HTML/CSS</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-group-label">Frontend & Backend</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">React</span>
+                        <span class="skill-tag">Node.js</span>
+                        <span class="skill-tag">Express.js</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-group-label">APIs & Integration</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">REST APIs</span>
+                        <span class="skill-tag">Webhooks</span>
+                        <span class="skill-tag">OAuth 2.0</span>
+                        <span class="skill-tag">JWT</span>
+                        <span class="skill-tag">Postman</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-group-label">Data & Infra</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">MongoDB</span>
+                        <span class="skill-tag">PostgreSQL</span>
+                        <span class="skill-tag">AWS (EC2, S3, IAM)</span>
+                        <span class="skill-tag">Git</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-group-label">SE / Support</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">Root Cause Diagnosis</span>
+                        <span class="skill-tag">Log Analysis</span>
+                        <span class="skill-tag">Technical Docs</span>
+                        <span class="skill-tag">Onboarding Design</span>
+                    </div>
+                </div>
+                <div>
+                    <div class="skill-group-label">Languages</div>
+                    <div class="skill-tags">
+                        <span class="skill-tag">English (fluent)</span>
+                        <span class="skill-tag">Turkish (native)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="resume-section">
+            <div class="resume-section-title">Education</div>
+
+            <div class="resume-entry">
+                <div class="resume-entry-header">
+                    <div class="resume-entry-title">Software Engineering Certificate</div>
+                    <div class="resume-entry-date">2024</div>
+                </div>
+                <div class="resume-entry-company">TripleTen · Full-stack: React, Node.js, Express, MongoDB, REST APIs, Auth</div>
+            </div>
+
+            <div class="resume-entry">
+                <div class="resume-entry-header">
+                    <div class="resume-entry-title">B.A. in English Language Teaching</div>
+                    <div class="resume-entry-date">2011 — 2016</div>
+                </div>
+                <div class="resume-entry-company">Çukurova University</div>
+            </div>
+
+            <div class="resume-entry">
+                <div class="resume-entry-header">
+                    <div class="resume-entry-title">AWS Solutions Architect Associate</div>
+                    <div class="resume-entry-date">In Progress · 2026</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="download-btn">
+            <span style="color: var(--text-secondary); font-size: 13px;">Want a PDF? Print this page — it's clean enough.</span>
+        </div>
+</body>
+</html>
