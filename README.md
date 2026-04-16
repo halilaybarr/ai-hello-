@@ -2,7 +2,7 @@
 
 **Halil Aybar** — *APIs, customers, and the chaos in between.*
 
-🚀 **[Live Demo](https://refreshing-trust-production-943f.up.railway.app)** · [Resume](https://refreshing-trust-production-943f.up.railway.app/resume) · [GitHub](https://github.com/halilaybarr/ai-hello-)
+🚀 **[Live Demo](https://refreshing-trust-production-943f.up.railway.app)** · [Resume](https://refreshing-trust-production-943f.up.railway.app/resume)
 
 Search for an artist, then head to the SE Simulator and try to debug a broken webhook. It's a real API and a real AI — not a mockup.
 
