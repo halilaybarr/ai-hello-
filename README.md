@@ -24,9 +24,7 @@ Search for an artist, then head to the SE Simulator and try to debug a broken we
 Hits the real Spotify API. Search any artist or track, get results as cards, toggle the raw JSON if you want to see what's actually coming back.
 
 ### 🤖 SE Scenario Simulator
-You're the SE. Chat with "Melodia Inc." — a fictional customer whose Spotify webhooks stopped working. The AI plays the customer and drops clues as you ask the right questions.
-
-**Root cause:** expired OAuth token from the November 2025 Spotify API migration.
+You're the SE. Chat with "Melodia Inc." — a fictional customer whose Spotify webhooks stopped working. The AI plays the customer and drops clues as you ask the right questions. See if you can find the root cause.
 
 ### 📊 Integration Health Dashboard
 Uptime, latency, error rate, a Chart.js webhook timeline, and a live event log. Hit **Trigger Incident** to simulate a 500 spike and watch the dashboard react.
@@ -102,5 +100,7 @@ se-playground/
 - React + Node.js, deployed in production
 - Managed teams of 15+, $38K/week in operations
 - Comfortable talking to engineers and non-engineers alike
+
+[linkedin.com/in/halilaybarr](https://linkedin.com/in/halilaybarr) · halilaybar0@gmail.com
 
 
