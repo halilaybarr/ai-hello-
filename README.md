@@ -95,11 +95,11 @@ se-playground/
 
 ## 👨‍💻 About
 
-**Halil Aybar** — Full-stack engineer, former ops manager (Starbucks, 4 years). Looking for SE / Forward Deployed Engineer roles.
+**Halil Aybar** — Full-stack engineer and current Operations Manager at Starbucks (7 years, still there). Looking for SE / Forward Deployed Engineer roles.
 
-- React + Node.js, deployed in production
-- Managed teams of 15+, $38K/week in operations
-- Comfortable talking to engineers and non-engineers alike
+- Built and shipped full-stack apps in React + Node.js
+- Currently managing a 15+ person team doing $38K/week — still writing code on the side
+- Equally comfortable in a technical deep-dive and a customer call
 
 [linkedin.com/in/halilaybarr](https://linkedin.com/in/halilaybarr) · halilaybar0@gmail.com
 
