@@ -63,7 +63,6 @@ app.get('/api/spotify-token', async (req, res) => {
 });
 
 const OpenAI = require('openai');
-const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
 let chatHistory = [];
 
@@ -74,6 +73,8 @@ app.post('/api/chat', async (req, res) => {
     if (!process.env.OPENAI_API_KEY) {
       return res.status(500).json({ error: 'OpenAI API key not configured' });
     }
+
+    const openai = new OpenAI({ apiKey: process.env.OPENAI_API_KEY });
 
     const systemPrompt = {
       role: 'system',
