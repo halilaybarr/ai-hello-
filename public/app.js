@@ -182,8 +182,15 @@ const eventLogBody = document.getElementById('event-log-body');
 
 let incidentTriggered = false;
 
+const today = new Date();
+const chartLabels = Array.from({ length: 7 }, (_, i) => {
+    const d = new Date(today);
+    d.setDate(today.getDate() - (6 - i));
+    return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+});
+
 const mockWebhookData = {
-    labels: ['Apr 6', 'Apr 7', 'Apr 8', 'Apr 9', 'Apr 10', 'Apr 11', 'Apr 12'],
+    labels: chartLabels,
     data: [245, 289, 312, 278, 295, 321, 298]
 };
 
@@ -262,7 +269,7 @@ triggerIncidentBtn.addEventListener('click', () => {
         const errorRow = document.createElement('tr');
         errorRow.className = 'error-row';
         errorRow.innerHTML = `
-            <td>2026-04-12 14:25:33</td>
+            <td>${formatTs(0)}</td>
             <td>webhook.delivery_failed</td>
             <td><span class="status-badge status-error">500</span></td>
             <td>—</td>
@@ -271,6 +278,28 @@ triggerIncidentBtn.addEventListener('click', () => {
         
         incidentTriggered = true;
     }
+});
+
+function formatTs(minutesAgo) {
+    const d = new Date(Date.now() - minutesAgo * 60000);
+    return d.toISOString().replace('T', ' ').slice(0, 19);
+}
+
+const seedEvents = [
+    { event: 'playlist.updated', ms: '138ms', minsAgo: 4 },
+    { event: 'track.saved',      ms: '145ms', minsAgo: 9 },
+    { event: 'user.followed',    ms: '152ms', minsAgo: 16 },
+];
+
+seedEvents.forEach(({ event, ms, minsAgo }) => {
+    const tr = document.createElement('tr');
+    tr.innerHTML = `
+        <td>${formatTs(minsAgo)}</td>
+        <td>${event}</td>
+        <td><span class="status-badge status-success">200</span></td>
+        <td>${ms}</td>
+    `;
+    eventLogBody.appendChild(tr);
 });
 
 window.addEventListener('load', () => {
